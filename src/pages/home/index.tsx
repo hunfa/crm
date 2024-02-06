@@ -25,7 +25,8 @@ const Home = () => {
           <CardHeader title='ACL and JWT 🔒'></CardHeader>
           <CardContent>
             <Typography sx={{ mb: 2 }}>
-              Access Control (ACL) and Authentication (JWT) are the two main security features of our template and are implemented in the starter-kit as well.
+              Access Control (ACL) and Authentication (JWT) are the two main security features of our template and are
+              implemented in the starter-kit as well.
             </Typography>
             <Typography>Please read our Authentication and ACL Documentations to get more out of them.</Typography>
           </CardContent>
