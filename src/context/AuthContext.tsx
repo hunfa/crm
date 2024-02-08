@@ -43,10 +43,8 @@ const AuthProvider = ({ children }: Props) => {
       if (storedToken) {
         setLoading(true)
         await axios
-          .get(authConfig.meEndpoint, {
-            headers: {
-              Authorization: storedToken
-            }
+          .post(authConfig.meEndpoint, {
+            token: storedToken
           })
           .then(async response => {
             setLoading(false)
