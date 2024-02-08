@@ -1,4 +1,5 @@
 import { AbilityBuilder, Ability } from '@casl/ability'
+import { UserRole } from 'src/backend/enums/UserRole.enum'
 
 export type Subjects = string
 export type Actions = 'manage' | 'create' | 'read' | 'update' | 'delete'
@@ -19,10 +20,10 @@ export type ACLObj = {
 const defineRulesFor = (role: string, subject: string) => {
   const { can, rules } = new AbilityBuilder(AppAbility)
 
-  if (role === 'admin') {
+  if (role === UserRole.ADMIN) {
     can('manage', 'all')
-  } else if (role === 'client') {
-    can(['read'], 'acl-page')
+  } else if (role === UserRole.EMPLOYEE) {
+    can('manage', 'all')
   } else {
     can(['read', 'create', 'update', 'delete'], subject)
   }

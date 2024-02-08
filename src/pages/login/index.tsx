@@ -95,17 +95,17 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 }))
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).required()
+  userName: yup.string().required(),
+  password: yup.string().required()
 })
 
 const defaultValues = {
-  password: 'admin',
-  email: 'admin@materialize.com'
+  password: '123',
+  userName: 'admin'
 }
 
 interface FormData {
-  email: string
+  userName: string
   password: string
 }
 
@@ -135,11 +135,11 @@ const LoginPage = () => {
   })
 
   const onSubmit = (data: FormData) => {
-    const { email, password } = data
-    auth.login({ email, password, rememberMe }, () => {
-      setError('email', {
+    const { userName, password } = data
+    auth.login({ user_name: userName, password, rememberMe }, () => {
+      setError('userName', {
         type: 'manual',
-        message: 'Email or Password is invalid'
+        message: 'Username or Password is invalid'
       })
     })
   }
@@ -270,22 +270,24 @@ const LoginPage = () => {
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <FormControl fullWidth sx={{ mb: 4 }}>
                 <Controller
-                  name='email'
+                  name='userName'
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange, onBlur } }) => (
                     <TextField
                       autoFocus
-                      label='Email'
+                      label='Username'
                       value={value}
                       onBlur={onBlur}
                       onChange={onChange}
-                      error={Boolean(errors.email)}
+                      error={Boolean(errors.userName)}
                       placeholder='admin@materialize.com'
                     />
                   )}
                 />
-                {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
+                {errors.userName && (
+                  <FormHelperText sx={{ color: 'error.main' }}>{errors.userName.message}</FormHelperText>
+                )}
               </FormControl>
               <FormControl fullWidth>
                 <InputLabel htmlFor='auth-login-v2-password' error={Boolean(errors.password)}>

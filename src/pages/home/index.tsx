@@ -4,13 +4,16 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+import { useAuth } from 'src/hooks/useAuth'
 
 const Home = () => {
+  const { user } = useAuth()
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Kick start your project 🚀'></CardHeader>
+          <CardHeader title={`Hi ${user?.user_name}`}></CardHeader>
           <CardContent>
             <Typography sx={{ mb: 2 }}>All the best for your new project.</Typography>
             <Typography>
