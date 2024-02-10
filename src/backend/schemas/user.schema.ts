@@ -1,4 +1,4 @@
-import { UserRole } from '../../enums/UserRole.enum'
+import { UserRole } from '../../shared/enums/UserRole.enum'
 
 import mongoose from 'mongoose'
 
@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema(
       required: function () {
         return this.role !== UserRole.ADMIN
       }
-    }
+    },
+    department_name: { type: String, required: true }
   },
   { timestamps: true }
 )

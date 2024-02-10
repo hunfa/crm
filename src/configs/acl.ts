@@ -1,5 +1,5 @@
 import { AbilityBuilder, Ability } from '@casl/ability'
-import { UserRole } from 'src/enums/UserRole.enum'
+import { UserRole } from 'src/shared/enums/UserRole.enum'
 
 export type Subjects = string
 export type Actions = 'manage' | 'create' | 'read' | 'update' | 'delete'
