@@ -1,4 +1,4 @@
-import User from 'src/backend/schemas/user.schema'
+import UserModel from 'src/backend/schemas/user.schema'
 import connectDb from '../../../backend/DatabaseConnection'
 import jwt from 'jsonwebtoken'
 
@@ -9,7 +9,7 @@ const handler = async (req, res) => {
       const { token } = req.body
       const decoded = jwt.verify(token, tokenSecret)
 
-      const user = await User.findOne({ user_name: decoded.user.user_name }, '-password')
+      const user = await UserModel.findOne({ user_name: decoded.user.user_name }, '-password')
       if (!user) return res.status(500).send('user not found')
 
       return res.send({

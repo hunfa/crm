@@ -1,5 +1,5 @@
 import connectDb from 'src/backend/DatabaseConnection'
-import Note from 'src/backend/schemas/note.schema'
+import NoteModel from 'src/backend/schemas/note.schema'
 import mongoose from 'mongoose'
 import { guardWrapper } from 'src/backend/auth.guard'
 
@@ -7,7 +7,7 @@ const handler = async (req, res) => {
   if (req.method === 'GET') {
     try {
       const { user_id } = req.body
-      const notes = await Note.find({ user_id: mongoose.Types.ObjectId.createFromTime(user_id) })
+      const notes = await NoteModel.find({ user_id: mongoose.Types.ObjectId.createFromTime(user_id) })
 
       return res.send({
         message: 'notes fetched successfully',

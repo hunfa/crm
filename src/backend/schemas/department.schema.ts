@@ -1,9 +1,12 @@
 import mongoose from 'mongoose'
 
-const departmentSchema = new mongoose.Schema({
-  name: { type: String, required: true }
-})
+const departmentSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true }
+  },
+  { timestamps: true }
+)
 
-const Department = mongoose.models.User || mongoose.model('Department', departmentSchema)
+const DepartmentModel = mongoose.models.User || mongoose.model('Department', departmentSchema)
 
-export default Department
+export default DepartmentModel

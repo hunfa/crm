@@ -1,12 +1,12 @@
 import connectDb from 'src/backend/DatabaseConnection'
-import Note from 'src/backend/schemas/note.schema'
+import NoteModel from 'src/backend/schemas/note.schema'
 import { guardWrapper } from 'src/backend/auth.guard'
 
 const handler = async (req, res) => {
   if (req.method === 'POST') {
     try {
       const { description } = req.body
-      const newNote = new Note({
+      const newNote = new NoteModel({
         description,
         user_id: req.user._id
       })
