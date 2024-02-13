@@ -20,16 +20,16 @@ export enum SocialMediaWorkStatus {
 
 export enum WebSeoWorkStatus {
   ON_PAGE = 'ON PAGE',
-  BACK_LINKS = 'BACK_LINKS',
-  EXTRA_LINKS = 'EXTRA_LINKS',
-  PAID_GUEST_POSTING = 'PAID_GUEST_POSTING',
-  MONTHLY_SEO = 'MONTHLY_SEO'
+  BACK_LINKS = 'BACK LINKS',
+  EXTRA_LINKS = 'EXTRA LINKS',
+  PAID_GUEST_POSTING = 'PAID GUEST POSTING',
+  MONTHLY_SEO = 'MONTHLY SEO'
 }
 
 export enum WordPressWorkStatus {
   ECOMMERCE = 'E-COMMERCE',
-  REDESIGN_WEBSITE = 'REDESIGN_WEBSITE',
-  ON_PAGE_WEBSITE = 'ON_PAGE_WEBSITE',
+  REDESIGN_WEBSITE = 'REDESIGN WEBSITE',
+  ON_PAGE_WEBSITE = 'ON PAGE WEBSITE',
   FULL = 'FULL'
 }
 
@@ -38,6 +38,14 @@ export enum WriterWorkStatus {
   BLOG = 'BLOG'
 }
 
+export type WorkStatus =
+  | LocalSeoWorkStatus
+  | PaidMarketingWorkStatus
+  | WordPressWorkStatus
+  | WriterWorkStatus
+  | SocialMediaWorkStatus
+  | WebSeoWorkStatus
+
 // Arrays for each enum
 export const LocalSeoWorkStatusValues: LocalSeoWorkStatus[] = Object.values(LocalSeoWorkStatus)
 export const PaidMarketingWorkStatusValues: PaidMarketingWorkStatus[] = Object.values(PaidMarketingWorkStatus)
@@ -45,3 +53,12 @@ export const SocialMediaWorkStatusValues: SocialMediaWorkStatus[] = Object.value
 export const WebSeoWorkStatusValues: WebSeoWorkStatus[] = Object.values(WebSeoWorkStatus)
 export const WordPressWorkStatusValues: WordPressWorkStatus[] = Object.values(WordPressWorkStatus)
 export const WriterWorkStatusValues: WriterWorkStatus[] = Object.values(WriterWorkStatus)
+
+export const WorkStatusValues: string[] = [
+  ...LocalSeoWorkStatusValues,
+  ...PaidMarketingWorkStatusValues,
+  ...SocialMediaWorkStatusValues,
+  ...WebSeoWorkStatusValues,
+  ...WordPressWorkStatusValues,
+  ...WriterWorkStatusValues
+]
