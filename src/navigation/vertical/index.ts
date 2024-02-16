@@ -1,4 +1,5 @@
 // ** Type import
+import { title } from 'process'
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
 const navigation = (): VerticalNavItemsType => {
@@ -21,9 +22,15 @@ const navigation = (): VerticalNavItemsType => {
       icon: 'mdi:shield-outline'
     },
     {
-      path: '/ticket',
       title: 'New Ticket',
-      icon: 'mdi-ticket-confirmation-outline'
+      icon: 'mdi-ticket-confirmation-outline',
+      children: [
+        { title: 'Local SEO / GMB Optimization', path: '/ticket/lsf' },
+        { title: 'Wordpress Development', path: '/ticket/wd' },
+        { title: 'Website SEO', path: '/ticket/ws' },
+        { title: 'Paid Marketing', path: '/ticket/pm' },
+        { title: 'Social Media / Customer Reviews Management', path: '/ticket/smr' }
+      ]
     }
   ]
 }

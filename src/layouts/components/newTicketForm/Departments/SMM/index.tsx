@@ -2,12 +2,12 @@ import React from 'react'
 import FormsHeader from '../../Header'
 import Customer from '../../SharedField/Customer'
 import SaleDepartment from '../../SharedField/SaleDepartment'
-import BusinessDetail from './BusinessDetail'
 import Review from '../../SharedField/Review'
 import { Box, Card, CardContent, CardHeader, Divider, Stack, Typography } from '@mui/material'
 import SubmitButton from '../../SharedField/FormButton'
+import BusinessDetail from '../LocalSeo/BusinessDetail'
 
-const LocalSeoForm = () => {
+const SmmForm = () => {
   return (
     <>
       <Card>
@@ -47,4 +47,4 @@ const LocalSeoForm = () => {
   )
 }
 
-export default LocalSeoForm
+export default SmmForm

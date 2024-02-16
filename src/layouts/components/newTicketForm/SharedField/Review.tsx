@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react'
 import { TextField, FormControl, InputLabel, Select, MenuItem, FormHelperText, Grid } from '@mui/material'
 import { Controller, useFormContext } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
+import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 
 interface CustomInputProps {
   value: DateType
@@ -13,7 +14,7 @@ const CustomInput = forwardRef(({ ...props }: CustomInputProps, ref) => {
   return <TextField inputRef={ref} {...props} sx={{ width: '100%' }} />
 })
 
-const SSMReview = () => {
+const Review = () => {
   const {
     formState: { errors },
     control
@@ -70,27 +71,29 @@ const SSMReview = () => {
             control={control}
             rules={{ required: true }}
             render={({ field: { value, onChange } }) => (
-              <DatePicker
-                selected={value}
-                showYearDropdown
-                showMonthDropdown
-                onChange={e => onChange(e)}
-                placeholderText='MM/DD/YYYY'
-                customInput={
-                  <CustomInput
-                    value={value}
-                    onChange={onChange}
-                    label='Date of Birth'
-                    error={Boolean(errors.ssmReview?.deadline)}
-                    aria-describedby='validation-basic-dob'
-                  />
-                }
-              />
+              <DatePickerWrapper>
+                <DatePicker
+                  selected={value}
+                  showYearDropdown
+                  showMonthDropdown
+                  onChange={e => onChange(e)}
+                  placeholderText='MM/DD/YYYY'
+                  customInput={
+                    <CustomInput
+                      value={value}
+                      onChange={onChange}
+                      label='Date of Birth'
+                      error={Boolean(errors.ssmReview?.deadline)}
+                      aria-describedby='validation-basic-dob'
+                    />
+                  }
+                />
+              </DatePickerWrapper>
             )}
           />
           {errors.ssmReview?.deadline && (
             <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
-              {errors.ssmReview.deadline.message}
+              {errors?.ssmReview?.deadline?.message}
             </FormHelperText>
           )}
         </Grid>
@@ -110,7 +113,7 @@ const SSMReview = () => {
                     error={Boolean(errors?.ssmReview?.price)}
                     fullWidth
                   />
-                  {errors.ssmReview?.price && <FormHelperText>{errors.ssmReview.price.message}</FormHelperText>}
+                  {errors.ssmReview?.price && <FormHelperText>{errors?.ssmReview?.price?.message}</FormHelperText>}
                 </>
               )}
             />
@@ -165,4 +168,4 @@ const SSMReview = () => {
   )
 }
 
-export default SSMReview
+export default Review

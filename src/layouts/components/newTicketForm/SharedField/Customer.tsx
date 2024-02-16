@@ -29,7 +29,7 @@ const Customer = () => {
             />
             {errors?.business?.name && (
               <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-business-name'>
-                Business name is required
+                {errors?.business?.name?.message}
               </FormHelperText>
             )}
           </FormControl>
@@ -53,7 +53,7 @@ const Customer = () => {
             />
             {errors?.business?.email && (
               <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-last-name'>
-                Business email is required
+                {errors?.business?.email.message}
               </FormHelperText>
             )}
           </FormControl>
