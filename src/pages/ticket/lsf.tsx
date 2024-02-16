@@ -4,6 +4,7 @@ import LocalSeoForm from 'src/layouts/components/newTicketForm/Departments/Local
 import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 const defaultValues = {
   business: {
@@ -108,10 +109,56 @@ const schema = Yup.object().shape({
 const Ticket = () => {
   const methods = useForm({ defaultValues, resolver: yupResolver(schema), mode: 'onChange' })
 
-  const onSubmit = (data: FormData) => {
-    do {
-      console.log('data', data)
-    } while (false)
+  const onSubmit = async (data: FormData) => {
+    const { businessDetail, ssmReview, saleDepart, business } = data
+
+    // Destructure properties from each nested object
+    const { serviceName, facebookUrl, workStatus, gmbUrl, websiteUrl, socialProfile, loginCred, notes } = businessDetail
+
+    const { remaining, advance, price, deadline, department, priorityLevel } = ssmReview
+
+    const { assignor, supportPerson, fronter, closerPerson } = saleDepart
+
+    const { name, email } = business
+
+    // Create a new object with the destructured properties
+    const requestData = {
+      serviceName,
+      facebookUrl,
+      workStatus,
+      gmbUrl,
+      websiteUrl,
+      socialProfile,
+      loginCred,
+      notes,
+      remaining,
+      advance,
+      price,
+      deadline,
+      department,
+      priorityLevel,
+      assignor,
+      supportPerson,
+      fronter,
+      closerPerson,
+      businessName: name,
+      businessEmail: email
+    }
+
+    const apiUrl = '/api/business-ticket/create'
+
+    await axios
+      .post(apiUrl, requestData)
+      .then(response => {
+        console.log('response', response)
+
+        // Handle the successful response
+        // setResponseData(response.data);
+      })
+      .catch(error => {
+        // Handle the error
+        console.error('Error:', error)
+      })
   }
 
   return (
