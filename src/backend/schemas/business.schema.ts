@@ -10,7 +10,7 @@ const businessSchema = new mongoose.Schema(
     state: { type: String, required: false },
     country: { type: String, required: false },
     street: { type: String, required: false },
-    zipcode: { type: String, required: true },
+    zipcode: { type: String, required: false },
     social_profile: { type: String, required: false },
     website_url: { type: String, required: false },
     work_status: [

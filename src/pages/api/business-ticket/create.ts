@@ -8,18 +8,13 @@ import { getBusinessWithName } from 'src/backend/utils/business/getBusinessWithN
 import { SaleType } from 'src/shared/enums/SaleType.enum'
 import { UserRole } from 'src/shared/enums/UserRole.enum'
 
-const handler = async (req, res) => {
+const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
     try {
       const {
-        status,
         priority,
-        created_by,
         assignee_depart_id,
         assignee_depart_name,
-        assignor_depart_id,
-        assignor_depart_name,
-        outsourced_work,
         client_reporting_date,
         due_date,
         fronter,
@@ -77,14 +72,12 @@ const handler = async (req, res) => {
       }
 
       const payload = {
-        status,
         priority,
-        created_by,
+        created_by: req.user._id,
         assignee_depart_id: new mongoose.Types.ObjectId(assignee_depart_id),
         assignee_depart_name,
-        assignor_depart_id: new mongoose.Types.ObjectId(assignor_depart_id),
-        assignor_depart_name,
-        outsourced_work,
+        assignor_depart_id: req.user.department_id,
+        assignor_depart_name: req.user.department_name,
         client_reporting_date,
         due_date,
         closer,
