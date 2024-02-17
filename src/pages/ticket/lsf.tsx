@@ -110,6 +110,8 @@ const Ticket = () => {
   const methods = useForm({ defaultValues, resolver: yupResolver(schema), mode: 'onChange' })
 
   const onSubmit = async (data: FormData) => {
+    console.log('data', data)
+
     const { businessDetail, ssmReview, saleDepart, business } = data
 
     // Destructure properties from each nested object
@@ -148,7 +150,11 @@ const Ticket = () => {
     const apiUrl = '/api/business-ticket/create'
 
     await axios
-      .post(apiUrl, requestData)
+      .post(apiUrl, requestData, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      })
       .then(response => {
         console.log('response', response)
 

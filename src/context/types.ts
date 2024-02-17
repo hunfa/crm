@@ -12,7 +12,8 @@ export type UserDataType = {
   user_name: string
   password: string
   avatar?: string | null
-  name: string
+  name: string,
+  department: object
 }
 
 export type AuthValuesType = {
@@ -21,5 +22,6 @@ export type AuthValuesType = {
   user: UserDataType | null
   setLoading: (value: boolean) => void
   setUser: (value: UserDataType | null) => void
-  login: (params: LoginParams, errorCallback?: ErrCallbackType) => void
+  login: (params: LoginParams, errorCallback?: ErrCallbackType) => void,
+  department: object
 }

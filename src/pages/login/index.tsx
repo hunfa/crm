@@ -43,6 +43,8 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
+import { useDispatch } from 'react-redux'
+import department from 'src/store/department'
 
 // ** Styled Components
 const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }) => ({
@@ -120,6 +122,8 @@ const LoginPage = () => {
   const { settings } = useSettings()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
 
+  // cosnt dispatch = useDispatch()
+
   // ** Vars
   const { skin } = settings
 
@@ -142,6 +146,8 @@ const LoginPage = () => {
         message: 'Username or Password is invalid'
       })
     })
+
+    // dispatchEvent(department())
   }
 
   const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'

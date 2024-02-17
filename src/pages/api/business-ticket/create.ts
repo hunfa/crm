@@ -38,7 +38,7 @@ const handler = async (req, res) => {
         social_profile,
         website_url,
         work_status
-      } = req.body
+      } = req.body;
 
       const { role } = req.user
 
@@ -81,8 +81,8 @@ const handler = async (req, res) => {
         priority,
         created_by,
         assignee_depart_id: new mongoose.Types.ObjectId(assignee_depart_id),
-        assignee_depart_name ,
-        assignor_depart_id : new mongoose.Types.ObjectId(assignor_depart_id),,
+        assignee_depart_name,
+        assignor_depart_id: new mongoose.Types.ObjectId(assignor_depart_id),
         assignor_depart_name,
         outsourced_work,
         client_reporting_date,
@@ -106,7 +106,7 @@ const handler = async (req, res) => {
         payload: { _id: result._id }
       })
     } catch (error) {
-      // console.log(error)
+      console.log(error)
       res.status(500).send('something went wrong')
     }
   } else {

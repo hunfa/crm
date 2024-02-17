@@ -33,6 +33,7 @@ const AuthProvider = ({ children }: Props) => {
   // ** States
   const [user, setUser] = useState<UserDataType | null>(defaultProvider.user)
   const [loading, setLoading] = useState<boolean>(defaultProvider.loading)
+  const [department, setDepartment] = useState([])
 
   // ** Hooks
   const router = useRouter()
@@ -73,6 +74,8 @@ const AuthProvider = ({ children }: Props) => {
     axios
       .post(authConfig.loginEndpoint, params)
       .then(async response => {
+        console.log(response.data.payload.departments)
+        setDepartment(response.data.payload.departments)
         params.rememberMe
           ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.payload.token)
           : null
@@ -104,7 +107,8 @@ const AuthProvider = ({ children }: Props) => {
     setUser,
     setLoading,
     login: handleLogin,
-    logout: handleLogout
+    logout: handleLogout,
+    department
   }
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

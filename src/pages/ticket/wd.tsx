@@ -4,6 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import Wordpress from 'src/layouts/components/newTicketForm/Departments/Wordpress'
+import { useAuth } from 'src/hooks/useAuth'
 
 const defaultValues = {
   business: {
@@ -109,6 +110,9 @@ const Ticket = () => {
       console.log('data', data)
     } while (false)
   }
+
+  const auth = useAuth()
+  console.log('auth', auth.department)
 
   return (
     <>
