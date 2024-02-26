@@ -12,6 +12,7 @@ import AnalyticsOverview from './AnalyticsOverview/AnalyticsOverview'
 import AnalyticsWeeklySales from './AnalyticsWeeklySales/AnalyticsWeeklySales'
 import BusinessTicketCards from './BusinessTicketCards/BusinessTicketCards'
 import CardAward from './CardAward/CardAward'
+import ClientCards from './ClientCards'
 import DepartmentTicketCards from './DepartmentTicketCards/DepartmentTicketCards'
 import ReportingDateNotification from './ReportingDateNotification'
 import SalesCardOverView from './SalesCardOverView/SalesCardOverView'
@@ -111,6 +112,7 @@ const Home = () => {
       <ReportingDateNotification />
       <BusinessTicketCards />
       <DepartmentTicketCards />
+      <ClientCards />
     </>
   )
 }
