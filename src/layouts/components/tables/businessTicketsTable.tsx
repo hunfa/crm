@@ -4,11 +4,9 @@ import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { mapFormPageRoutes } from 'src/constants'
 import { useAuth } from 'src/hooks/useAuth'
-import { Department, DepartmentValues } from 'src/shared/enums/Department.enum'
+import { Department } from 'src/shared/enums/Department.enum'
 import MuiTable from './MuiTable'
 import businessTicketsColumns from './columns/businessTicketsTableColumns'
-import { Button, Card, CardContent, CardHeader, FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material'
-import { TicketStatus, TicketStatusValues } from 'src/shared/enums/TicketStatus.enum'
 let filteredData: any = []
 function BusinessTicketsTable() {
   const [data, setData] = useState([])
@@ -31,6 +29,8 @@ function BusinessTicketsTable() {
           headers: { authorization: localStorage.getItem('token') }
         })
       ])
+      console.log('usersResponse', usersResponse)
+      console.log('dataResponse', dataResponse)
 
       // Destructure the responses
       const { data: usersData } = usersResponse

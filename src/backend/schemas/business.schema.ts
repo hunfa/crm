@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { ClientStatusValues } from 'src/shared/enums/ClientStatus.enum'
 import { WorkStatusValues } from 'src/shared/enums/WorkStatusType.enum'
 
 const businessSchema = new mongoose.Schema(
@@ -14,7 +15,12 @@ const businessSchema = new mongoose.Schema(
     social_profile: { type: String, required: false },
     website_url: { type: String, required: false },
     gmb_url: { type: String, required: false, trim: true },
-
+    client_status: [
+      {
+        type: String,
+        enum: ClientStatusValues
+      }
+    ],
     work_status: [
       {
         type: String,

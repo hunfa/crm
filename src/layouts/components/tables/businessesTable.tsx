@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import MuiTable from './MuiTable'
-import { useAuth } from 'src/hooks/useAuth'
-import { useRouter } from 'next/router'
 import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useEffect, useMemo, useState } from 'react'
+import { useAuth } from 'src/hooks/useAuth'
+import MuiTable from './MuiTable'
 import BusinessesColumns from './columns/BusinessesColumns'
 
 function BusinessesTable() {
@@ -21,28 +21,37 @@ function BusinessesTable() {
       console.error(error)
     }
   }
+
   const handleEdit = (businessId: string) => {
     router.push({
       pathname: '/business-update',
       query: { businessId }
     })
   }
-  const columns: any = useMemo(() => BusinessesColumns(handleEdit), [data])
+  const updateClientStatus = (businessId: string) => {
+    console.log(`updatedClientStatus for ${businessId}`)
+  }
+
+  const columns = useMemo(() => BusinessesColumns(handleEdit, updateClientStatus), [handleEdit])
 
   useEffect(() => {
     fetchBusinesses()
   }, [])
+
+  // Render the MuiTable component only when columns are initialized
   return (
     <>
-      <MuiTable
-        data={data}
-        columns={columns}
-        options={{
-          state: {
-            isLoading: isLoading
-          }
-        }}
-      />
+      {columns && (
+        <MuiTable
+          data={data}
+          columns={columns}
+          options={{
+            state: {
+              isLoading: isLoading
+            }
+          }}
+        />
+      )}
     </>
   )
 }
