@@ -58,7 +58,7 @@ function CloserSheetTable() {
         closer: d.original.closer_id?.user_name,
         'work type': d.original.ticket_id.work_status,
         'sale type': d.original.sales_type,
-        payment: `$${d.original.received_payment}`
+        payment: d.original.received_payment
       }
     })
 

@@ -59,7 +59,7 @@ function FronterSheetTable() {
         'business name': d.original.business_id.business_name,
         fronter: d.original.fronter_id.user_name,
         'work type': d.original.ticket_id.work_status,
-        payment: `$${d.original.received_payment}`
+        payment: d.original.received_payment
       }
     })
 

@@ -55,16 +55,38 @@ export const createDepartmentalTicketsRouteObj = {
   ]
 }
 
-export const viewFronterSheetRouteObj = {
-  path: '/fronter-sheet',
-  title: 'Fronter Sheet',
-  icon: 'mdi:shield-outline'
+export const accountsRouteObj = {
+  title: 'Accounts',
+  subject: 'accounts',
+  icon: 'mdi-ticket-confirmation-outline',
+  children: [
+    { path: '/accounts/fronter-sheet', title: 'Fronter Sheet' },
+    {
+      path: '/accounts/closer-sheet',
+      title: 'Closer Sheet'
+    },
+    {
+      path: '/accounts/remaining-sheet',
+      title: 'Remaining Sheet'
+    }
+  ]
 }
 
-export const viewCloserSheetRouteObj = {
-  path: '/closer-sheet',
-  title: 'Closer Sheet',
-  icon: 'mdi:shield-outline'
+export const analyticsRouteObj = {
+  title: 'Analytics',
+  subject: 'analytics',
+  icon: 'carbon:analytics',
+  children: [
+    { path: '/analytics/overall-sales', title: 'OverAll Sales' },
+    {
+      path: '/analytics/fronter-sales',
+      title: 'Fronter Sales'
+    },
+    {
+      path: '/analytics/closer-sales',
+      title: 'Closer Sales'
+    }
+  ]
 }
 
 export const UsersRouteObj = {
@@ -75,10 +97,4 @@ export const UsersRouteObj = {
     { title: 'Create New User', path: '/users/create-user' },
     { title: 'View Users', path: '/users/view-users' }
   ]
-}
-
-export const viewRemainingSheetRouteObj = {
-  path: '/remaining-sheet',
-  title: 'Remaining Sheet',
-  icon: 'mdi:shield-outline'
 }

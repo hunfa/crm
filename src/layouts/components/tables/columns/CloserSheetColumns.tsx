@@ -13,8 +13,6 @@ const CloserSheetColumns: any = (businessList: any) => {
       },
       accessorKey: 'createdAt',
       size: 20
-
-      // Cell: ({ cell }: any) => cell.getValue().toLocaleDateString()
     },
     {
       header: 'Business Name',
@@ -41,13 +39,8 @@ const CloserSheetColumns: any = (businessList: any) => {
       accessorKey: 'sales_type'
     },
     {
-      header: 'Payment',
-      accessorKey: 'received_payment',
-      Cell: ({ cell }: any) => {
-        const value = cell.getValue()
-
-        return `$${value}`
-      }
+      header: 'Payment ($)',
+      accessorKey: 'received_payment'
     }
   ]
 }

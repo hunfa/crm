@@ -26,7 +26,7 @@ import { MenuItem, Select } from '@mui/material'
 import axios from 'axios'
 import Icon from 'src/@core/components/icon'
 import { Department, DepartmentValues } from 'src/shared/enums/Department.enum'
-import { SaleEmployeeRoleValues, UserRole, UserRoleValues } from 'src/shared/enums/UserRole.enum'
+import { UserRole, UserRoleValues } from 'src/shared/enums/UserRole.enum'
 import * as yup from 'yup'
 
 interface State {
@@ -39,15 +39,13 @@ interface FormInputs {
   password: string
   department: string
   role: string
-  sub_role: string
 }
 
 const defaultValues = {
   user_name: '',
   password: '',
   department: '',
-  role: '',
-  sub_role: ''
+  role: ''
 }
 
 const validationSchema = yup.object({
@@ -60,12 +58,7 @@ const validationSchema = yup.object({
     ),
   password: yup.string().required('Password is required'),
   department: yup.string().required('Department is required'),
-  role: yup.string().required('Role is required'),
-  sub_role: yup.string().when('department', {
-    is: (val: any) => val === Department.Sales,
-    then: () => yup.string().required('Sub Role is required'),
-    otherwise: () => yup.string()
-  })
+  role: yup.string().required('Role is required')
 })
 
 const FormValidationAsync = () => {
@@ -103,8 +96,7 @@ const FormValidationAsync = () => {
           user_name: data.user_name,
           password: data.password,
           role: data.role,
-          department_name: data.department,
-          sub_role: data.sub_role
+          department_name: data.department
         },
         { headers: { authorization: localStorage.getItem('token') } }
       )
@@ -270,42 +262,6 @@ const FormValidationAsync = () => {
                 {errors.role && <FormHelperText sx={{ color: 'error.main' }}>{errors.role.message}</FormHelperText>}
               </FormControl>
             </Grid>
-
-            {getValues('department') === Department.Sales && (
-              <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <InputLabel error={Boolean(errors.sub_role)} htmlFor='validation-sub-role-select'>
-                    Sub Role
-                  </InputLabel>
-                  <Controller
-                    name='sub_role'
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { value, onChange } }) => (
-                      <Select
-                        value={value}
-                        label='Sub Role'
-                        onChange={onChange}
-                        error={Boolean(errors.sub_role)}
-                        labelId='validation-sub-role-select'
-                        aria-describedby='validation-sub-role-select'
-                      >
-                        {SaleEmployeeRoleValues.map(d => {
-                          return (
-                            <MenuItem key={d} value={d}>
-                              {d}
-                            </MenuItem>
-                          )
-                        })}
-                      </Select>
-                    )}
-                  />
-                  {errors.sub_role && (
-                    <FormHelperText sx={{ color: 'error.main' }}>{errors.sub_role.message}</FormHelperText>
-                  )}
-                </FormControl>
-              </Grid>
-            )}
 
             <Grid item xs={12}>
               <Button size='large' type='submit' variant='contained'>

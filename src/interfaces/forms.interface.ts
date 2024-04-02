@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 export interface BusinessDetails {
   business_name: string
   business_email: string
@@ -142,7 +144,7 @@ export const localSeoDefaultValues: LocalSeoFormType = {
     total_payment: 0,
     advance_payment: 0,
     remaining_payment: 0,
-    client_reporting_date: null
+    client_reporting_date: dayjs(new Date()).add(1, 'month').toDate()
   },
   localSeoDetails: {
     notes: '',
@@ -177,7 +179,7 @@ export const wordPressDefaultValues: WordPressFormType = {
     total_payment: 0,
     advance_payment: 0,
     remaining_payment: 0,
-    client_reporting_date: null
+    client_reporting_date: dayjs(new Date()).add(1, 'month').toDate()
   },
   wordPressDetails: {
     service_name: '',
@@ -215,7 +217,7 @@ export const webSeoDefaultValues: WebSeoFormType = {
     total_payment: 0,
     advance_payment: 0,
     remaining_payment: 0,
-    client_reporting_date: null
+    client_reporting_date: dayjs(new Date()).add(1, 'month').toDate()
   },
   webSeoDetails: {
     service_name: '',
@@ -259,7 +261,7 @@ export const paidMarketingDefaultValues: PaidMarketingFormType = {
     total_payment: 0,
     advance_payment: 0,
     remaining_payment: 0,
-    client_reporting_date: null
+    client_reporting_date: dayjs(new Date()).add(1, 'month').toDate()
   },
   paidMarketingDetails: {
     service_name: '',
@@ -301,7 +303,7 @@ export const socialMediaDefaultValues: SocialMediaFormType = {
     total_payment: 0,
     advance_payment: 0,
     remaining_payment: 0,
-    client_reporting_date: null
+    client_reporting_date: dayjs(new Date()).add(1, 'month').toDate()
   },
   socialMediaFormTypeDetails: {
     service_name: '',

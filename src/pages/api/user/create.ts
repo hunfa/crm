@@ -7,12 +7,10 @@ import DepartmentModel from 'src/backend/schemas/department.schema'
 const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
     try {
-      const { user_name, password, role, department_name, sub_role } = req.body
+      const { user_name, password, role, department_name } = req.body
 
       if (!(req.user.role === UserRole.ADMIN))
         return res.status(500).send('You are not authorized to perform this action')
-
-      // if (role === Department.Sales) if (!sub_role) return res.status(500).send('sub role is required')
 
       const userExists = await UserModel.findOne({ user_name })
 
@@ -29,7 +27,7 @@ const handler = async (req: any, res: any) => {
         department_id: department._id,
         department_name
       }
-      if (sub_role) temp.sub_role = sub_role
+
       const newUser = new UserModel(temp)
       const savedUser = await newUser.save()
 

@@ -26,7 +26,6 @@ import ChangeTotalPaymentDialog from './dialogs/ChangeTotalPayment'
 import ChangeAdvancePaymentDialog from './dialogs/ChangeAdvancePayment'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useConfirm } from 'material-ui-confirm'
-import { SaleEmployeeRole } from 'src/shared/enums/UserRole.enum'
 
 const CloserComponent = ({ defaultValue, closers, id }: any) => {
   const [value, setValue] = useState(defaultValue)
@@ -65,12 +64,9 @@ const CloserComponent = ({ defaultValue, closers, id }: any) => {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          {/* <MenuItem value=''>Not Assigned</MenuItem> */}
           {closers &&
             closers.length > 0 &&
             closers.map((e: any) => {
-              if (e.sub_role !== SaleEmployeeRole.CLOSER) return
-
               return (
                 <MenuItem key={e.user_name} value={e.user_name}>
                   {e.user_name}
@@ -120,12 +116,9 @@ const FronterComponent = ({ defaultValue, closers, sessionId }: any) => {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          {/* <MenuItem value=''>Not Assigned</MenuItem> */}
           {closers &&
             closers.length > 0 &&
             closers.map((e: any) => {
-              if (e.sub_role !== SaleEmployeeRole.FRONTER) return
-
               return (
                 <MenuItem key={e.user_name} value={e.user_name}>
                   {e.user_name}

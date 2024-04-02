@@ -7,7 +7,6 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import axios from 'axios'
 import { FormControl, MenuItem, Select } from '@mui/material'
-import { SaleEmployeeRole } from 'src/shared/enums/UserRole.enum'
 import toast from 'react-hot-toast'
 
 export default function AddCreditPaymentDialog({ session, pushNewPaymentInPaymentHistories, saleUsers }: any) {
@@ -103,8 +102,6 @@ export default function AddCreditPaymentDialog({ session, pushNewPaymentInPaymen
                 Select Closer
               </MenuItem>
               {saleUsers.map((e: any) => {
-                if (e.sub_role !== SaleEmployeeRole.CLOSER) return
-
                 return (
                   <MenuItem key={e.user_name} value={e.user_name}>
                     {e.user_name}

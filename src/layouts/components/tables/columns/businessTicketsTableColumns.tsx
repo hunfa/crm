@@ -193,10 +193,12 @@ const businessTicketsColumns: any = (
     },
     {
       header: 'Due Date',
-
       accessorFn: (originalRow: any) => dayjs(originalRow.due_date),
-
       filterVariant: 'date',
+      accessorKey: 'due_date',
+      filterFn: (row: any, _columnIds: any, filterValue: any) => {
+        return filterValue.isSame(row.getValue('due_date'), 'day')
+      },
       Cell: ({ cell }: any) => {
         const value = cell.getValue()
 

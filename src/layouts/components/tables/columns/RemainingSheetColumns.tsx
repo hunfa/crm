@@ -25,13 +25,8 @@ const RemainingSheetColumns: any = (businessList: any) => {
       filterVariant: 'autocomplete'
     },
     {
-      header: 'Remaining Balance',
-      accessorKey: 'remaining_payment',
-      Cell: ({ cell }: any) => {
-        const value = cell.getValue()
-
-        return `$${value}`
-      }
+      header: 'Remaining Balance ($)',
+      accessorKey: 'remaining_payment'
     }
   ]
 }

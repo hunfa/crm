@@ -3,15 +3,11 @@ import connectDb from 'src/backend/DatabaseConnection'
 import { guardWrapper } from 'src/backend/auth.guard'
 import UserModel from 'src/backend/schemas/user.schema'
 import { Department } from 'src/shared/enums/Department.enum'
-import { SaleEmployeeRole } from 'src/shared/enums/UserRole.enum'
 
 const handler = async (req: any, res: any) => {
   if (req.method === 'GET') {
     try {
-      const closerUsers = await UserModel.find(
-        { department_name: Department.Sales, sub_role: SaleEmployeeRole.CLOSER },
-        '-password'
-      )
+      const closerUsers = await UserModel.find({ department_name: Department.Sales }, '-password')
 
       return res.send({
         message: 'closer users fetched successfully',

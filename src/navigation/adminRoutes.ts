@@ -6,11 +6,10 @@ import {
   createTicketsRouteObj,
   homeRouteObj,
   viewBusinessesRouteObj,
-  viewCloserSheetRouteObj,
+  accountsRouteObj,
   viewDepartmentalTicketsRouteObj,
-  viewFronterSheetRouteObj,
-  viewRemainingSheetRouteObj,
-  viewTicketsRouteObj
+  viewTicketsRouteObj,
+  analyticsRouteObj
 } from './routes'
 
 const adminNavigation = (): VerticalNavItemsType => {
@@ -22,9 +21,8 @@ const adminNavigation = (): VerticalNavItemsType => {
     viewDepartmentalTicketsRouteObj,
     UsersRouteObj,
     viewBusinessesRouteObj,
-    viewFronterSheetRouteObj,
-    viewCloserSheetRouteObj,
-    viewRemainingSheetRouteObj
+    accountsRouteObj,
+    analyticsRouteObj
   ]
 }
 

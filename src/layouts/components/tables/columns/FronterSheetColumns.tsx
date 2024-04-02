@@ -34,13 +34,8 @@ const FronterSheetColumns: any = (businessList: any) => {
       filterFn: 'equals'
     },
     {
-      header: 'Payment',
-      accessorKey: 'received_payment',
-      Cell: ({ cell }: any) => {
-        const value = cell.getValue()
-
-        return `$${value}`
-      }
+      header: 'Payment ($)',
+      accessorKey: 'received_payment'
     }
   ]
 }

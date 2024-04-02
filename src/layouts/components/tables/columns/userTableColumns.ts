@@ -13,10 +13,7 @@ export const userColumns: any = () => [
   },
   {
     header: 'Role',
-    accessorKey: 'role',
-    Cell: ({ cell, row }: any) => {
-      return row.original?.sub_role ? cell.getValue() + ` (${row.original?.sub_role})` : cell.getValue()
-    }
+    accessorKey: 'role'
   },
   {
     header: 'Action'
