@@ -85,6 +85,10 @@ export const analyticsRouteObj = {
     {
       path: '/analytics/closer-sales',
       title: 'Closer Sales'
+    },
+    {
+      path: '/analytics/business-tickets',
+      title: 'Business Tickets'
     }
   ]
 }

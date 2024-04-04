@@ -23,7 +23,7 @@ import WeeklySalesChart from './WeeklySales'
 // Extend dayjs with the weekOfYear plugin
 dayjs.extend(weekOfYear)
 
-const DailySalesChart = () => {
+const DailySalesChart = ({ username }: any) => {
   // ** Hook
   const theme = useTheme()
   const [series, setSeries] = useState<any>([
@@ -60,10 +60,17 @@ const DailySalesChart = () => {
 
   const fetchMonthlySales = async () => {
     const monthNumber = month?.getMonth()
+
     try {
-      const res = await axios.get(`/api/stats/get-daily-sales?month=${monthNumber}`, {
-        headers: { authorization: localStorage.getItem('token') }
-      })
+      let user_name
+      if (username !== 'All') user_name = username
+
+      const res = await axios.get(
+        `/api/stats/get-daily-sales?month=${monthNumber}&user_name=${user_name}&year=${month?.getFullYear()}`,
+        {
+          headers: { authorization: localStorage.getItem('token') }
+        }
+      )
 
       const temp = new Array(31).fill(0)
       let totalAmount = 0
@@ -82,7 +89,8 @@ const DailySalesChart = () => {
       const oTotalSales: any = new Array(5).fill(0)
       for (const key in salesByWeek) {
         if (Object.prototype.hasOwnProperty.call(salesByWeek, key)) {
-          oTotalSales[key] = salesByWeek[key]
+          const numericKey = parseInt(key, 10)
+          oTotalSales[numericKey - 1] = salesByWeek[key]
         }
       }
       const weekNumbers = Object.keys(salesByWeek).map(Number)
@@ -100,7 +108,7 @@ const DailySalesChart = () => {
     if (month) {
       fetchMonthlySales()
     }
-  }, [month])
+  }, [month, username])
 
   const options: ApexOptions = {
     chart: {

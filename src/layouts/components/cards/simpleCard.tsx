@@ -17,18 +17,19 @@ function SimpleCard({ count, icon, loading, text, iconColor }: any) {
     <>
       <Card>
         <CardContent>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }} mb='20px'>
-            <Typography variant='h5' sx={{ mr: 1.75 }}>
-              {count || 0}
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+            <Typography variant='body1' color={textColor} sx={{ mr: 2 }}>
+              {text || ''}
             </Typography>
+
             <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: 'primary' } }}>
               <CustomAvatar skin='light' variant='rounded' sx={{ mr: 4 }} color={iconColor}>
                 <Icon icon={icon} fontSize='30px' />
               </CustomAvatar>
             </Box>
           </Box>
-          <Typography variant='body2' color={textColor}>
-            {text || ''}
+          <Typography variant='h5' sx={{ mr: 1.75 }}>
+            {count || 0}
           </Typography>
         </CardContent>
       </Card>

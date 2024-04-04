@@ -4,13 +4,14 @@ import { guardWrapper } from 'src/backend/auth.guard'
 import PaymentHistoryModel from 'src/backend/schemas/paymentHistory.schema'
 import { PaymentType } from 'src/shared/enums/PaymentType.enum'
 import utc from 'dayjs/plugin/utc'
+import mongoose from 'mongoose'
 
 dayjs.extend(utc)
 
 const handler = async (req: any, res: any) => {
   if (req.method === 'GET') {
     try {
-      const { date } = req.query
+      const { date, user_name } = req.query
 
       const currentYear = dayjs(date).year()
       const startDate = dayjs().year(currentYear).startOf('year').utc().toDate()
@@ -19,7 +20,22 @@ const handler = async (req: any, res: any) => {
 
       const stats = await PaymentHistoryModel.aggregate([
         {
-          $match: { $and: [{ payment_type: PaymentType.Credit }, { createdAt: { $gte: startDate, $lte: endDate } }] }
+          $match: {
+            $and: [
+              { payment_type: PaymentType.Credit },
+              { createdAt: { $gte: startDate, $lte: endDate } },
+              ...(user_name !== 'undefined'
+                ? [
+                    {
+                      $or: [
+                        { fronter_id: new mongoose.Types.ObjectId(user_name) },
+                        { closer_id: new mongoose.Types.ObjectId(user_name) }
+                      ]
+                    }
+                  ]
+                : [])
+            ]
+          }
         },
         {
           $project: {

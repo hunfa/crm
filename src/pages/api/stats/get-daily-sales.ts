@@ -4,22 +4,40 @@ import { guardWrapper } from 'src/backend/auth.guard'
 import PaymentHistoryModel from 'src/backend/schemas/paymentHistory.schema'
 import { PaymentType } from 'src/shared/enums/PaymentType.enum'
 import utc from 'dayjs/plugin/utc'
+import mongoose from 'mongoose'
 
 dayjs.extend(utc)
 
 const handler = async (req: any, res: any) => {
   if (req.method === 'GET') {
     try {
-      const { month } = req.query
+      const { month, user_name, year } = req.query
 
       const selectedMonth = parseInt(month)
 
-      const startDate = dayjs().month(selectedMonth).startOf('month').utc().toDate()
-      const endDate = dayjs().month(selectedMonth).endOf('month').utc().toDate()
+      const selectedYear = parseInt(year)
+
+      const startDate = dayjs().year(selectedYear).month(selectedMonth).startOf('month').utc().toDate()
+      const endDate = dayjs().year(selectedYear).month(selectedMonth).endOf('month').utc().toDate()
 
       const stats = await PaymentHistoryModel.aggregate([
         {
-          $match: { $and: [{ payment_type: PaymentType.Credit }, { createdAt: { $gte: startDate, $lte: endDate } }] }
+          $match: {
+            $and: [
+              { payment_type: PaymentType.Credit },
+              { createdAt: { $gte: startDate, $lte: endDate } },
+              ...(user_name !== 'undefined'
+                ? [
+                    {
+                      $or: [
+                        { fronter_id: new mongoose.Types.ObjectId(user_name) },
+                        { closer_id: new mongoose.Types.ObjectId(user_name) }
+                      ]
+                    }
+                  ]
+                : [])
+            ]
+          }
         },
         {
           $project: {

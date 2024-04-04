@@ -17,7 +17,7 @@ import axios from 'axios'
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import YearPicker from 'src/layouts/components/datePickers/YearPicker'
 
-const MonthlySalesChart = () => {
+const MonthlySalesChart = ({ username }: any) => {
   const theme = useTheme()
   const [series, setSeries] = useState<any>([
     {
@@ -30,7 +30,10 @@ const MonthlySalesChart = () => {
 
   const fetchMonthlySales = async (data: any[]) => {
     try {
-      const res = await axios.get(`/api/stats/get-monthly-sales?date=${year}`, {
+      let user_name
+      if (username !== 'All') user_name = username
+
+      const res = await axios.get(`/api/stats/get-monthly-sales?date=${year}&user_name=${user_name}`, {
         headers: { authorization: localStorage.getItem('token') }
       })
 
@@ -67,7 +70,7 @@ const MonthlySalesChart = () => {
       ])
       fetchMonthlySales(series)
     }
-  }, [year])
+  }, [year, username])
 
   // function getMonthNamesInRange(startDate: Date, endDate: Date): string[] {
   //   const startMonth = dayjs(startDate).month()

@@ -29,7 +29,7 @@ const CloserSalesChart = () => {
   const fetchMonthlySales = async () => {
     const monthNumber = month?.getMonth()
     try {
-      const res = await axios.get(`/api/stats/get-top-closers?month=${monthNumber}`, {
+      const res = await axios.get(`/api/stats/get-top-closers?month=${monthNumber}&year=${month?.getFullYear()}`, {
         headers: { authorization: localStorage.getItem('token') }
       })
 

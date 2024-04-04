@@ -29,7 +29,7 @@ const FrontersSalesChart = () => {
   const fetchMonthlySales = async () => {
     const monthNumber = month?.getMonth()
     try {
-      const res = await axios.get(`/api/stats/get-top-fronters?month=${monthNumber}`, {
+      const res = await axios.get(`/api/stats/get-top-fronters?month=${monthNumber}&year=${month?.getFullYear()}`, {
         headers: { authorization: localStorage.getItem('token') }
       })
 

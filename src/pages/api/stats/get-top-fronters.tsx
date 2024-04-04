@@ -11,12 +11,13 @@ dayjs.extend(utc)
 const handler = async (req: any, res: any) => {
   if (req.method === 'GET') {
     try {
-      const { month } = req.query
+      const { month, year } = req.query
 
       const selectedMonth = parseInt(month)
+      const selectedYear = parseInt(year)
 
-      const startDate = dayjs().month(selectedMonth).startOf('month').utc().toDate()
-      const endDate = dayjs().month(selectedMonth).endOf('month').utc().toDate()
+      const startDate = dayjs().year(selectedYear).month(selectedMonth).startOf('month').utc().toDate()
+      const endDate = dayjs().year(selectedYear).month(selectedMonth).endOf('month').utc().toDate()
 
       const stats = await PaymentHistoryModel.aggregate([
         {
