@@ -12,6 +12,7 @@ import { useAuth } from 'src/hooks/useAuth'
 import DepartmentalTicketCards from 'src/layouts/components/cards/DepartmentalTicketsCards'
 import { UserRole } from 'src/shared/enums/UserRole.enum'
 import BusinessTicketCards from '../../layouts/components/BusinessTicketCards/BusinessTicketCards'
+import TableSelection from '../CreateNotes'
 
 const Home = () => {
   const { user } = useAuth()
@@ -110,6 +111,7 @@ const Home = () => {
       </Grid>
       <BusinessTicketCards statusCounts={statusCounts} />
       {user?.role !== UserRole.SALE_EMPLOYEE && user?.role !== UserRole.SALE_MANAGER && <DepartmentalTicketCards />}
+      <TableSelection />
     </>
   )
 }
