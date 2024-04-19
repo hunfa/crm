@@ -198,7 +198,7 @@ const VerticalNavHeader = (props: Props) => {
             </defs>
           </svg> */}
 
-          <img src='/images/rankbpo.svg' alt='Rank BPO Icon' style={{ width: '100%' }} />
+          <img src='/images/logobpo.svg' alt='Rank BPO Icon' style={{ width: '100%', margin: 'auto' }} />
 
           {/* <HeaderTitle variant='h6' sx={{ ...menuCollapsedStyles, ...(navCollapsed && !navHover ? {} : { ml: 2 }) }}>
             {themeConfig.templateName}
