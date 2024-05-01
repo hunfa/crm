@@ -5,7 +5,7 @@ const connectDb = (handler: any) => async (req: any, res: any) => {
     return handler(req, res)
   }
 
-  await mongoose.connect('mongodb+srv://crmrankbpo:8PQnqzqTnGeXnSAX@crmrankorbit.gq2hhuc.mongodb.net/crm')
+  await mongoose.connect('mongodb+srv://rankbpo:rankbpo123@crmrankbpo.ae4ccof.mongodb.net/crm')
 
   return handler(req, res)
 }
