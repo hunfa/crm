@@ -9,12 +9,11 @@ import { useEffect, useState } from 'react'
 import Avatar from 'src/@core/components/mui/avatar'
 import { useAuth } from 'src/hooks/useAuth'
 
+import dayjs from 'dayjs'
 import DepartmentalTicketCards from 'src/layouts/components/cards/DepartmentalTicketsCards'
+import RemainingPriceDateDueTicketsTable from 'src/layouts/components/tables/RemainingPriceDueDateTicketsTable'
 import { UserRole } from 'src/shared/enums/UserRole.enum'
 import BusinessTicketCards from '../../layouts/components/BusinessTicketCards/BusinessTicketCards'
-import dayjs from 'dayjs'
-import ClientReportatingDateDueTicketsTable from 'src/layouts/components/tables/ClientReportatingDateDueTicketsTable'
-import RemainingPriceDateDueTicketsTable from 'src/layouts/components/tables/RemainingPriceDueDateTicketsTable'
 
 const Home = () => {
   const { user } = useAuth()
@@ -201,25 +200,22 @@ const Home = () => {
       )} */}
 
       {(user?.role === UserRole.ADMIN || user?.role === UserRole.SALE_MANAGER || user?.role === UserRole.TEAM_LEAD) && (
-        <Card sx={{ mt: 10 }}>
-          <CardContent sx={{ p: theme => `${theme.spacing(3.25, 5, 4.5)} !important` }}>
-            <Typography variant='h4' sx={{ mb: 5, textAlign: 'center' }}>
-              Overdue Client Reports Business Tickets
+        <>
+          {rptickets.length > 0 ? (
+            <Card sx={{ mt: 10 }}>
+              <CardContent sx={{ p: theme => `${theme.spacing(3.25, 5, 4.5)} !important` }}>
+                <Typography variant='h4' sx={{ mb: 5, textAlign: 'center' }}>
+                  Overdue Remaining Price Business Tickets
+                </Typography>
+                <RemainingPriceDateDueTicketsTable data={rptickets} isLoading={rpticketsLoading} />
+              </CardContent>
+            </Card>
+          ) : (
+            <Typography variant='h4' sx={{ mt: 10, textAlign: 'center' }}>
+              No overdue remaining price business tickets.
             </Typography>
-            <ClientReportatingDateDueTicketsTable data={cltickets} isLoading={clticketsLoading} />
-          </CardContent>
-        </Card>
-      )}
-
-      {(user?.role === UserRole.ADMIN || user?.role === UserRole.SALE_MANAGER) && (
-        <Card sx={{ mt: 10 }}>
-          <CardContent sx={{ p: theme => `${theme.spacing(3.25, 5, 4.5)} !important` }}>
-            <Typography variant='h4' sx={{ mb: 5, textAlign: 'center' }}>
-              Overdue Remaining Price Business Tickets
-            </Typography>
-            <RemainingPriceDateDueTicketsTable data={rptickets} isLoading={rpticketsLoading} />
-          </CardContent>
-        </Card>
+          )}
+        </>
       )}
     </>
   )
